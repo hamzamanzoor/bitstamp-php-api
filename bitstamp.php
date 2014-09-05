@@ -226,4 +226,44 @@ class Bitstamp
 	  return strtoupper(hash_hmac('sha256', $message, $this->secret));
 	  
 	}
+	
+	/**
+	* Bitstamp::user_transactions()
+	* List of Transactions	
+	* @return Array containing List of Transactions 
+	*/
+	function user_transactions()
+	{
+	
+     	return $this->bitstamp_query('user_transactions');  
+	
+	}
+	
+	/**
+	* Bitstamp::withdrawBTC()
+	* Transfer from Bitstamp to another Bitcoin Wallet
+	* @param float $amount
+	* @param Bitcoin Wallet address
+	* @return transaction id
+	* Minimum Transaction amount 0.0005 BTC
+	*/
+	function withdrawBTC($amount, $address)
+	{
+    
+        return $this->bitstamp_query('bitcoin_withdrawal', array('amount' => $amount,'address' => $address));		
+	
+	}
+
+	/**
+	* Bitstamp::withdrawal_requests()
+	* List of Withdrawal Requests
+	* @return Array containing List of Withdrawal Requests 
+	*/
+	function withdrawal_requests()
+	{    
+	    
+		return $this->bitstamp_query('withdrawal_requests', array());		
+		
+	}
+	
 }
